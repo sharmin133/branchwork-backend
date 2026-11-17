@@ -9,6 +9,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { PermissionsGuard } from './common/guards/permissions.guard';
 import { BranchesModule } from './modules/branches/branches.module';
+import { RolesModule } from './modules/roles/roles.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { BranchesModule } from './modules/branches/branches.module';
     PrismaModule,
     AuthModule,
     BranchesModule,
+    RolesModule,
   ],
   controllers: [AppController],
   providers: [
