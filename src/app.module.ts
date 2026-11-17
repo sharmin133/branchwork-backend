@@ -11,6 +11,7 @@ import { PermissionsGuard } from './common/guards/permissions.guard';
 import { BranchesModule } from './modules/branches/branches.module';
 import { RolesModule } from './modules/roles/roles.module';
 import { StaffModule } from './modules/staff/staff.module';
+import { ProductsModule } from './modules/products/products.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { StaffModule } from './modules/staff/staff.module';
     BranchesModule,
     RolesModule,
     StaffModule,
+    ProductsModule
   ],
   controllers: [AppController],
   providers: [

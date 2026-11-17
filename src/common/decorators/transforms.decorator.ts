@@ -5,3 +5,9 @@ export const Trim = () =>
 
 export const Lowercase = () =>
   Transform(({ value }) => (typeof value === 'string' ? value.trim().toLowerCase() : value));
+
+
+export const Uppercase = () =>
+  Transform(({ value }) =>
+    typeof value === 'string' ? value.trim().toUpperCase() : value,
+  );

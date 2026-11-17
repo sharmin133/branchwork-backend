@@ -31,12 +31,12 @@ export class RolesService {
   constructor(private readonly prisma: PrismaService) {}
 
   // GET AVAILABLE PERMISSIONS
-//   listPermissions() {
-//     return Object.values(Permission).map((key) => ({
-//       key,
-//       label: PERMISSION_LABELS[key],
-//     }));
-//   }
+  listPermissions() {
+    return Object.values(Permission).map((key) => ({
+      key,
+      label: PERMISSION_LABELS[key],
+    }));
+  }
 
   // CREATE ROLE
   async create(orgId: string, dto: CreateRoleDto) {
@@ -96,29 +96,30 @@ export class RolesService {
   }
 
   // UPDATE ROLE
-  async update(orgId: string, id: string, dto: UpdateRoleDto) {
-    try {
-      const result = await this.prisma.role.updateMany({
-        where: {
-          id,
-          organizationId: orgId,
-        },
-        data: dto,
-      });
 
-      if (result.count === 0) {
-        throw new NotFoundException('Role not found');
-      }
+async update(orgId: string, id: string, dto: UpdateRoleDto) {
+  try {
+    // Check role belongs to this organization
+    await this.getOwned(orgId, id);
 
-      return this.findOne(orgId, id);
-    } catch (error) {
-      if (error instanceof NotFoundException) {
-        throw error;
-      }
+    // Update only the fields sent in request body
+    await this.prisma.role.update({
+      where: {
+        id,
+        organizationId: orgId,
+      },
+      data: dto,
+    });
 
-      return this.handlePrismaError(error);
+    return this.findOne(orgId, id);
+  } catch (error) {
+    if (error instanceof NotFoundException) {
+      throw error;
     }
+
+    return this.handlePrismaError(error);
   }
+}
 
   // DELETE ROLE
   async remove(orgId: string, id: string) {
