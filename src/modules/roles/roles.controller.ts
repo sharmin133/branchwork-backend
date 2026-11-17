@@ -30,12 +30,12 @@ import { RolesService } from './roles.service';
 export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
 
-  // GET AVAILABLE PERMISSIONS
-  @Get('permissions')
-  @ApiOperation({ summary: 'Get all available permissions' })
-  listPermissions() {
-    return this.rolesService.listPermissions();
-  }
+//   // GET AVAILABLE PERMISSIONS
+//   @Get('permissions')
+//   @ApiOperation({ summary: 'Get all available permissions' })
+//   listPermissions() {
+//     return this.rolesService.listPermissions();
+//   }
 
   // CREATE ROLE
   @Post()

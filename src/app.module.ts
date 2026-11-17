@@ -10,6 +10,7 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { PermissionsGuard } from './common/guards/permissions.guard';
 import { BranchesModule } from './modules/branches/branches.module';
 import { RolesModule } from './modules/roles/roles.module';
+import { StaffModule } from './modules/staff/staff.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { RolesModule } from './modules/roles/roles.module';
     AuthModule,
     BranchesModule,
     RolesModule,
+    StaffModule,
   ],
   controllers: [AppController],
   providers: [

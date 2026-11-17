@@ -31,12 +31,12 @@ export class RolesService {
   constructor(private readonly prisma: PrismaService) {}
 
   // GET AVAILABLE PERMISSIONS
-  listPermissions() {
-    return Object.values(Permission).map((key) => ({
-      key,
-      label: PERMISSION_LABELS[key],
-    }));
-  }
+//   listPermissions() {
+//     return Object.values(Permission).map((key) => ({
+//       key,
+//       label: PERMISSION_LABELS[key],
+//     }));
+//   }
 
   // CREATE ROLE
   async create(orgId: string, dto: CreateRoleDto) {
