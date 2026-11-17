@@ -71,7 +71,7 @@ model User {
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   branch       Branch?      @relation(fields: [branchId], references: [id], onDelete: Restrict)
   role         Role?        @relation(fields: [roleId], references: [id], onDelete: Restrict)
-
+  refreshTokens RefreshToken[]
   @@index([organizationId])
   @@index([branchId])
   @@index([roleId])
@@ -95,4 +95,17 @@ model Product {
   @@unique([organizationId, sku])
   @@index([organizationId, branchId])
   @@index([name, category])
+}
+
+model RefreshToken {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
